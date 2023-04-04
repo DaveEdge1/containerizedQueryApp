@@ -1,22 +1,12 @@
 
-# ShinyProxy Template
+# QueryLipdverse Container Repo
 
-This repository provides a template to deploy your own Shiny apps on [ShinyProxy](https://www.shinyproxy.io).
+This repository contains the files underlying the QueryLipdverse app
 
-Full explanation on the contents of this repository is offered at
+The App is hosted at: 68.183.108.187/app/Query
 
-https://www.shinyproxy.io/documentation/deploying-apps/
+The Docker image is hosted on Docker Hub: davidedge/lipd_webapps:queryLipdverse3
 
-The purpose of this repository is to customize it for your needs, but if you want to build a Docker image from the Dockerfile in this repository, navigate into the root directory of this repository and run
+This app builds on the lipd ecosystem of r packages. Find more here: https://github.com/nickmckay/lipdR
 
-```
-sudo docker build -t openanalytics/shinyproxy-template .
-```
-
-Running the image for testing purposes outside ShinyProxy can be done using e.g.
-
-```
-sudo docker run -it -p 3838:3838 openanalytics/shinyproxy-template
-```
-
-**(c) Copyright Open Analytics NV, 2016-2022.**
+The data queried in the app are housed in lipdverse: https://lipdverse.org/
