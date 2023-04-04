@@ -1,29 +1,24 @@
-FROM openanalytics/r-ver:4.1.3
+FROM davidedge/lipd_webapps:lipdBase
 
-LABEL maintainer="Tobias Verbeke <tobias.verbeke@openanalytics.eu>"
-
-# system libraries of general use
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    pandoc \
-    pandoc-citeproc \
-    libcurl4-gnutls-dev \
-    libcairo2-dev \
-    libxt-dev \
-    libssl-dev \
-    libssh2-1-dev \
-    libssl1.1 \
-    && rm -rf /var/lib/apt/lists/*
-
-# system library dependency for the euler app
-RUN apt-get update && apt-get install -y \
-    libmpfr-dev \
-    && rm -rf /var/lib/apt/lists/*
+LABEL maintainer="Dave Edge <david.edge@nau.edu>"
 
 # basic shiny functionality
-RUN R -q -e "install.packages(c('shiny', 'rmarkdown'))"
+RUN R -q -e "install.packages('shiny')"
 
-# install dependencies of the euler app
-RUN R -q -e "install.packages('Rmpfr')"
+# install dependencies of the map
+RUN R -q -e "install.packages('rnaturalearth')"
+
+#Install map data dep
+RUN R -q -e "install.packages('rnaturalearthdata')"
+
+#install usethis to load data
+RUN R -q -e "install.packages('usethis')"
+
+#install loading bar package
+RUN R -q -e "install.packages('shinycssloaders')"
+
+#install data table package
+RUN R -q -e "install.packages('DT')"
 
 # copy the app to the image
 RUN mkdir /root/euler
